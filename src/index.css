@@ -1,0 +1,34 @@
+/* Inter servida localmente, igual ao squad-identidade-visual: sem depender do
+   embed do Google Fonts em runtime. */
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+
+:root {
+  --fonte: 'Inter', system-ui, sans-serif;
+  --cor-texto: #08060d;
+  --cor-fundo: #fff;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--fonte);
+  line-height: 1.45;
+  color: var(--cor-texto);
+  background: var(--cor-fundo);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font: inherit;
+}
