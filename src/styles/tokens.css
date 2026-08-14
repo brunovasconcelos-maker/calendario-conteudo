@@ -74,4 +74,10 @@
   --respiro-lateral: 24px;
   /* Card de formato do Novo Post: medida fixa, igual nas três plataformas. */
   --largura-card-formato: 193px;
+
+  /* Moldura das etapas de criação. Ficam em token porque o miolo precisa
+     descontar as duas para saber a altura que sobra para a mídia. */
+  --altura-cabecalho-etapa: 96px;
+  --altura-barra-etapas: 80px;
+  --respiro-etapa: 56px;
 }

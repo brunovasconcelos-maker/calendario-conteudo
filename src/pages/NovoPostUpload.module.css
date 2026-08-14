@@ -9,7 +9,7 @@
   flex: 1;
   align-items: center;
   justify-content: center;
-  padding: 56px 40px;
+  padding: var(--respiro-etapa) 40px;
 }
 
 /* --- estado vazio --- */
@@ -49,40 +49,57 @@
 /* --- estado anexado --- */
 
 .linha {
+  /* A altura que sobra entre o cabeçalho e a barra de etapas, já descontado o
+     respiro. É o teto da mídia, e o max() segura o valor em zero em janelas
+     baixas demais, onde a conta daria negativo. */
+  --altura-livre: max(
+    0px,
+    calc(
+      100vh - var(--altura-cabecalho-etapa) - var(--altura-barra-etapas) -
+        (2 * var(--respiro-etapa))
+    )
+  );
+
   display: flex;
   max-width: 100%;
-  max-height: 100%;
   align-items: center;
   gap: 20px;
 }
 
-/* O palco limita a moldura; a mídia se ajusta dentro dela sem cortar. As
-   medidas saem do Figma: 532x665 no post e no carrossel, 394x700 no vídeo e
-   no stories, que são verticais. */
+/* O palco só ancora o véu e o play: ele encolhe junto com a mídia, para os
+   botões continuarem encostados na borda do arquivo em qualquer tamanho. */
 .palco {
   position: relative;
   display: flex;
-  width: 532px;
-  max-width: 100%;
-  height: 665px;
-  max-height: 100%;
+  min-width: 0;
   align-items: center;
   justify-content: center;
-  border-radius: var(--raio-caixa);
 }
 
-.palcoVertical {
-  width: 394px;
-  height: 700px;
-}
-
+/*
+ * Os limites vivem na mídia, não no palco. Antes o palco tinha altura fixa de
+ * 665px com max-height: 100%, e esse 100% não valia nada: a linha tem altura
+ * automática, e porcentagem contra altura indefinida é ignorada. Sobrava a
+ * altura fixa, que atropelava o cabeçalho e a barra de etapas em janela baixa.
+ *
+ * Em px a conta é firme: a mídia nunca passa do tamanho do Figma nem da altura
+ * livre, e width/height automáticos preservam a proporção do arquivo.
+ */
 .midia {
   display: block;
-  max-width: 100%;
-  max-height: 100%;
+  width: auto;
+  height: auto;
+  max-width: min(532px, 100%);
+  max-height: min(665px, var(--altura-livre));
   border-radius: var(--raio-caixa);
   /* contain, e não cover: o arquivo do usuário aparece inteiro, sem corte. */
   object-fit: contain;
+}
+
+/* Vídeo e stories são verticais, e têm a moldura do Figma mais estreita. */
+.palcoVertical .midia {
+  max-width: min(394px, 100%);
+  max-height: min(700px, var(--altura-livre));
 }
 
 .veu {
