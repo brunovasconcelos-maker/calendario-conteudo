@@ -18,7 +18,14 @@ const VISTAS = [
  * duas instâncias do mesmo componente em rotações diferentes, e guardar dois
  * arquivos iguais a menos do giro só dá manutenção dobrada.
  */
-export default function Header({ rotulo, vista, onMudarVista, onAnterior, onProximo }) {
+export default function Header({
+  rotulo,
+  vista,
+  onMudarVista,
+  onAnterior,
+  onProximo,
+  onNovoPost,
+}) {
   const [aberto, setAberto] = useState(false)
   const filtroRef = useRef(null)
 
@@ -104,7 +111,7 @@ export default function Header({ rotulo, vista, onMudarVista, onAnterior, onProx
             )}
           </div>
 
-          <button type="button" className={s.novoPost}>
+          <button type="button" className={s.novoPost} onClick={onNovoPost}>
             Novo Post
             <img src={plus} alt="" width={24} height={24} />
           </button>

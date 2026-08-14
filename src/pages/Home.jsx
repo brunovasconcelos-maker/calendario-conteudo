@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Outlet, useNavigate } from 'react-router-dom'
 import CalendarioMensal from '../components/CalendarioMensal.jsx'
 import CalendarioSemanal from '../components/CalendarioSemanal.jsx'
 import Header from '../components/Header.jsx'
@@ -7,6 +8,7 @@ import { diaLimpo, rotuloDoPeriodo, somaDias, somaMeses } from '../lib/datas.js'
 import s from './Home.module.css'
 
 export default function Home() {
+  const navigate = useNavigate()
   const [hoje] = useState(() => diaLimpo(new Date()))
   const [vista, setVista] = useState('semanal')
   const [referencia, setReferencia] = useState(hoje)
@@ -28,6 +30,7 @@ export default function Home() {
           onMudarVista={setVista}
           onAnterior={() => passo(-1)}
           onProximo={() => passo(1)}
+          onNovoPost={() => navigate('/novo-post')}
         />
         <main className={s.principal}>
           {vista === 'mensal' ? (
@@ -37,6 +40,9 @@ export default function Home() {
           )}
         </main>
       </div>
+
+      {/* O modal de /novo-post entra aqui, por cima do calendário. */}
+      <Outlet />
     </div>
   )
 }

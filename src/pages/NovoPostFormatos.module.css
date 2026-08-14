@@ -1,0 +1,130 @@
+.pagina {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  background: var(--cor-fundo);
+}
+
+.cabecalho {
+  display: flex;
+  height: 96px;
+  flex: none;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--espaco-16) 40px;
+  border-bottom: 1px solid var(--cor-borda-acao);
+}
+
+.titulo {
+  margin: 0;
+  font-size: 20px;
+  font-weight: var(--peso-medio);
+  line-height: var(--altura-linha);
+  letter-spacing: -0.26px;
+  color: var(--cor-texto);
+  white-space: nowrap;
+}
+
+.fechar {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  border-radius: var(--raio-pilula);
+  background: transparent;
+  cursor: pointer;
+}
+
+.fechar:hover {
+  background: var(--cor-superficie);
+}
+
+.conteudo {
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  padding: var(--espaco-24) 40px;
+}
+
+.formatos {
+  display: flex;
+  width: 808px;
+  max-width: 100%;
+  gap: var(--espaco-12);
+}
+
+/* Card de vidro: borda branca, desfoque por trás e os brilhos internos, do
+   mesmo jeito que o ícone do módulo na sidebar. */
+.card {
+  position: relative;
+  display: flex;
+  height: 200px;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: var(--espaco-16);
+  border: 1px solid #fff;
+  border-radius: var(--raio-card);
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(12px);
+  box-shadow:
+    0 2px 2px rgba(0, 0, 0, 0.13),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    inset 0 0 15px rgba(255, 255, 255, 0.6);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    box-shadow 150ms ease,
+    background 150ms ease;
+}
+
+/* O Figma não desenha o estado de hover destes cards. Fica no mesmo idioma de
+   vidro: o card acende um pouco e a sombra ganha profundidade. */
+.card:hover {
+  background: rgba(255, 255, 255, 0.6);
+  box-shadow:
+    0 6px 16px rgba(0, 0, 0, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    inset 0 0 15px rgba(255, 255, 255, 0.6);
+}
+
+.topo {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.selo {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--raio-icone);
+  background: var(--cor-superficie);
+}
+
+/* Altura de duas linhas: o "Post Único" ocupa as duas e os outros rótulos
+   ficam alinhados com ele, encostados embaixo. */
+.nome {
+  display: flex;
+  height: 40px;
+  flex-direction: column;
+  justify-content: center;
+  font-size: var(--texto-corpo);
+  font-weight: var(--peso-semibold);
+  line-height: 20px;
+  letter-spacing: -0.23px;
+  color: var(--cor-texto);
+  white-space: pre-line;
+}
