@@ -1,0 +1,11 @@
+.icone {
+  display: block;
+  flex: none;
+}
+
+/* Segura o lugar do ícone que falta, para o layout não se mexer quando o
+   arquivo chegar. */
+.vazio {
+  display: block;
+  flex: none;
+}
