@@ -1,9 +1,16 @@
 import { useRef, useState } from 'react'
-import { Navigate, useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import EtapaLayout from '../components/EtapaLayout.jsx'
 import Icone from '../components/Icone.jsx'
-import { useUploads } from '../hooks/useUploads.js'
-import { CARROSSEL, MIDIA, VIDEO, acharFormato } from '../lib/formatos.js'
+import { usePostEmCriacao } from '../hooks/usePostEmCriacao.js'
+import {
+  CARROSSEL,
+  MIDIA,
+  VIDEO,
+  caminhoDaEtapa,
+  posicaoDaEtapa,
+  proximaEtapa,
+} from '../lib/formatos.js'
 import s from './NovoPostUpload.module.css'
 
 /*
@@ -13,12 +20,11 @@ import s from './NovoPostUpload.module.css'
  * tipos aceitos, e se anexar empilha (carrossel) ou troca.
  */
 export default function NovoPostUpload() {
-  const { plataforma: idPlataforma, formato: idFormato } = useParams()
+  const { formato, idPlataforma, idFormato, uploads } = usePostEmCriacao()
   const navigate = useNavigate()
-  const formato = acharFormato(idPlataforma, idFormato)
 
-  const ehCarrossel = formato?.comportamento === CARROSSEL
-  const uploads = useUploads({ multiplo: ehCarrossel })
+  const ehCarrossel = formato.comportamento === CARROSSEL
+  const { numero, total } = posicaoDaEtapa(formato, 'upload')
 
   // Um input só para as três aberturas do seletor. `modo` diz o que fazer com
   // o que voltar: começar, empilhar no carrossel ou trocar o item à mostra.
@@ -27,9 +33,6 @@ export default function NovoPostUpload() {
   const [arrastando, setArrastando] = useState(false)
   const [tocando, setTocando] = useState(false)
   const videoRef = useRef(null)
-
-  // Par plataforma/formato que não existe volta para a escolha de formato.
-  if (!formato) return <Navigate to={`/novo-post/${idPlataforma ?? ''}`} replace />
 
   const abrirSeletor = (proximoModo) => {
     setModo(proximoModo)
@@ -63,10 +66,18 @@ export default function NovoPostUpload() {
   return (
     <EtapaLayout
       titulo={formato.titulo}
-      etapa={1}
+      etapa={numero}
+      totalDeEtapas={total}
       onVoltar={() => navigate(`/novo-post/${idPlataforma}`)}
       continuarAtivo={!uploads.vazio}
-      onContinuar={() => navigate(`/novo-post/${idPlataforma}/${idFormato}/etapa-2`)}
+      onContinuar={() =>
+        navigate(
+          caminhoDaEtapa(
+            `/novo-post/${idPlataforma}/${idFormato}`,
+            proximaEtapa(formato, 'upload'),
+          ),
+        )
+      }
     >
       <input
         ref={inputRef}
