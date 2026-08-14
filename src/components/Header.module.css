@@ -133,6 +133,16 @@
   white-space: nowrap;
 }
 
+/*
+ * O Plus.svg do repositório é preto, porque o "+" de somar imagem ao carrossel
+ * fica sobre um círculo branco. Aqui ele vai sobre o botão preto, e sairia
+ * invisível. O filtro leva o glifo a branco sem precisar de um segundo arquivo
+ * só para inverter a cor.
+ */
+.novoPost img {
+  filter: brightness(0) invert(1);
+}
+
 .novoPost {
   display: flex;
   height: 40px;
