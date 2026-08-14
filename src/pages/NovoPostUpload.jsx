@@ -149,30 +149,34 @@ export default function NovoPostUpload() {
               )}
             </div>
 
-            <div className={s.acoes}>
-              <button
-                type="button"
-                className={s.acao}
-                aria-label="Trocar arquivo"
-                onClick={() => abrirSeletor('substituir')}
-              >
-                <Icone nome="PencilSimpleLine" tamanho={24} />
-              </button>
-              <button
-                type="button"
-                className={s.acao}
-                aria-label="Remover arquivo"
-                onClick={uploads.remover}
-              >
-                <Icone nome="Trash" tamanho={24} />
-              </button>
-            </div>
-
-            {ehCarrossel && (
-              <>
+            {/* Editar, apagar e a seta de avançar dividem a mesma coluna,
+                colada na borda da mídia. O "+" fica numa coluna à parte. */}
+            <div className={s.colunaDireita}>
+              <div className={s.acoes}>
                 <button
                   type="button"
-                  className={`${s.seta} ${uploads.temProximo ? '' : s.invisivel}`}
+                  className={s.acao}
+                  aria-label="Trocar arquivo"
+                  onClick={() => abrirSeletor('substituir')}
+                >
+                  <Icone nome="PencilSimpleLine" tamanho={24} />
+                </button>
+                <button
+                  type="button"
+                  className={s.acao}
+                  aria-label="Remover arquivo"
+                  onClick={uploads.remover}
+                >
+                  <Icone nome="Trash" tamanho={24} />
+                </button>
+              </div>
+
+              {ehCarrossel && (
+                <button
+                  type="button"
+                  className={`${s.seta} ${s.setaDireita} ${
+                    uploads.temProximo ? '' : s.invisivel
+                  }`}
                   aria-label="Próxima imagem"
                   aria-hidden={!uploads.temProximo}
                   tabIndex={uploads.temProximo ? 0 : -1}
@@ -180,15 +184,18 @@ export default function NovoPostUpload() {
                 >
                   <Icone nome="CaretRight" tamanho={24} />
                 </button>
-                <button
-                  type="button"
-                  className={s.seta}
-                  aria-label="Adicionar imagem"
-                  onClick={() => abrirSeletor('adicionar')}
-                >
-                  <Icone nome="Plus" tamanho={24} />
-                </button>
-              </>
+              )}
+            </div>
+
+            {ehCarrossel && (
+              <button
+                type="button"
+                className={s.seta}
+                aria-label="Adicionar imagem"
+                onClick={() => abrirSeletor('adicionar')}
+              >
+                <Icone nome="Plus" tamanho={24} />
+              </button>
             )}
           </div>
         </div>

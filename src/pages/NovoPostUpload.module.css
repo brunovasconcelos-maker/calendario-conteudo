@@ -124,13 +124,36 @@
   cursor: pointer;
 }
 
+/*
+ * A coluna à direita da mídia. Estica na altura do palco de propósito: é o que
+ * dá referência para a seta de avançar se centrar na mídia, enquanto editar e
+ * apagar ficam encostados no topo.
+ */
+.colunaDireita {
+  position: relative;
+  display: flex;
+  width: 56px;
+  flex: none;
+  flex-direction: column;
+  align-self: stretch;
+}
+
 /* Editar e apagar ficam encostados no topo do palco, como no Figma. */
 .acoes {
   display: flex;
   flex: none;
   flex-direction: column;
-  align-self: flex-start;
   gap: var(--espaco-16);
+}
+
+/* Fora do fluxo para não empurrar o editar e o apagar: a seta divide a coluna
+   com eles, mas alinhada ao meio da mídia, como no node 6008:2607 — onde ela
+   sai no mesmo x da dupla, e não no x do "+". */
+.setaDireita {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
 }
 
 .acao,
