@@ -7,8 +7,7 @@ import s from './NovoPostFormatos.module.css'
  * Os formatos de uma plataforma, em página inteira. Uma página só serve as
  * três: o que muda vem de src/lib/plataformas.js.
  *
- * Os cards ainda não levam a lugar nenhum — a tela de criação do post é o
- * próximo passo. Por ora só o hover responde.
+ * Cada card abre a etapa 1 do formato, em /novo-post/:plataforma/:formato.
  */
 export default function NovoPostFormatos() {
   const { plataforma: id } = useParams()
@@ -35,7 +34,12 @@ export default function NovoPostFormatos() {
       <main className={s.conteudo}>
         <div className={s.formatos}>
           {plataforma.formatos.map((formato) => (
-            <button key={formato.id} type="button" className={s.card}>
+            <button
+              key={formato.id}
+              type="button"
+              className={s.card}
+              onClick={() => navigate(`/novo-post/${id}/${formato.id}`)}
+            >
               <span className={s.topo}>
                 <span className={s.selo}>
                   <Icone nome={formato.icone} tamanho={24} />
