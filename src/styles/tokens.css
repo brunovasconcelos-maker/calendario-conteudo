@@ -42,7 +42,11 @@
   --espaco-14: 14px;
   --espaco-16: 16px;
   --espaco-24: 24px;
+  --espaco-26: 26px;  /* folga entre os blocos da sidebar */
 
-  /* Medidas de layout */
-  --largura-sidebar: 80px;
+  /* Medidas de layout.
+     A sidebar tem 76px, mas o header começa em 80px: sobra uma faixa de 4px
+     de fundo entre os dois. Por isso são duas medidas, e não uma. */
+  --largura-sidebar: 76px;
+  --deslocamento-conteudo: 80px;
 }
