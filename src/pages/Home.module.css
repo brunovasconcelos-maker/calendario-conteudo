@@ -1,15 +1,24 @@
 .layout {
-  min-height: 100vh;
+  height: 100vh;
   background: var(--cor-fundo);
 }
 
 /* A sidebar é fixa, então a coluna de conteúdo anda para o lado dela. O
    deslocamento é de 80px, e não os 76px da sidebar: no Figma o header começa
-   em 80 e fica uma faixa de 4px de fundo entre os dois. */
+   em 80 e fica uma faixa de 4px de fundo entre os dois.
+
+   Altura travada na tela e min-height: 0 no meio da pilha: sem isso o corpo
+   do calendário cresce com o conteúdo em vez de rolar por dentro. */
 .coluna {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
   margin-left: var(--deslocamento-conteudo);
 }
 
 .principal {
-  padding: 0 56px 56px 50px;
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
 }

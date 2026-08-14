@@ -1,0 +1,74 @@
+.calendario {
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
+}
+
+.cabecalho {
+  display: grid;
+  flex: none;
+  grid-template-columns: var(--colunas-semana);
+  padding: 0 var(--respiro-lateral) var(--espaco-24);
+  border-bottom: 1px solid var(--cor-borda-sutil);
+}
+
+.diaCabecalho {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--espaco-12);
+}
+
+.nome {
+  font-size: var(--texto-botao);
+  font-weight: var(--peso-medio);
+  line-height: var(--altura-linha);
+  letter-spacing: -0.08px;
+  color: var(--cor-texto-secundario);
+}
+
+.numero {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: var(--peso-regular);
+  line-height: var(--altura-linha);
+  letter-spacing: -0.08px;
+  color: var(--cor-texto-secundario);
+}
+
+/* Hoje: número branco dentro do círculo preto ("Elipse Selected" no Figma). */
+.numeroHoje {
+  border-radius: var(--raio-pilula);
+  background: var(--cor-marca);
+  color: var(--cor-texto-invertido);
+}
+
+.corpo {
+  min-height: 0;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.colunas {
+  display: grid;
+  min-height: 100%;
+  grid-template-columns: var(--colunas-semana);
+}
+
+/* As divisórias verticais são bordas das colunas, e não uma imagem: assim
+   acompanham a altura e a largura sozinhas. A primeira não leva borda para a
+   grade não abrir com um risco colado na sidebar. */
+.coluna {
+  min-width: 0;
+  border-left: 1px solid var(--cor-borda-sutil);
+}
+
+.coluna:first-child {
+  border-left: none;
+}
