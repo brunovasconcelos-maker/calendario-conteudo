@@ -1,0 +1,48 @@
+/*
+ * Tokens extraídos do Figma — Squad | Calendário de Conteúdo (node 6041:8491).
+ * Os nomes entre parênteses são as variáveis correspondentes no Figma.
+ * Mesma organização do squad-identidade-visual.
+ */
+:root {
+  /* Cores */
+  --cor-fundo: #ffffff;              /* BG/Background */
+  --cor-superficie: #f4f5f5;         /* fundo da sidebar */
+  --cor-texto: #000000;              /* Texto-Icones/Default, Text/Default */
+  --cor-texto-secundario: #798282;   /* Text/Secondary — setas e chevrons */
+  --cor-texto-invertido: #ffffff;    /* Texto-Icones/Invert */
+  --cor-marca: #000000;              /* Background/Marca — fundo do botão */
+  --cor-borda-sutil: #ebeded;        /* BG/Overlay-2 — borda do filtro */
+  --cor-avatar-fundo: #dee8ed;       /* Color/Neutral/90 — fundo do avatar */
+  /* Fundo do item ativo da navegação. Sai como hex cru do Figma, sem
+     variável própria no arquivo. */
+  --cor-item-ativo: #e5e5e5;
+
+  /* Tipografia — Inter em todo o site, servida localmente por
+     @fontsource/inter (sem CDN), igual ao squad-identidade-visual.
+     O Figma desenha em SF Pro; os pesos 510 e 590 viram 500 e 600. */
+  --fonte: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --altura-linha: 1.2;
+
+  --texto-titulo-pagina: 28px;
+  --texto-corpo: 16px;
+  --texto-botao: 14px;
+
+  --peso-regular: 400;
+  --peso-medio: 500;    /* Figma: 510 */
+  --peso-semibold: 600; /* Figma: 590 */
+
+  /* Raios */
+  --raio-icone: 12px;   /* slots da navegação */
+  --raio-avatar: 300px;
+  --raio-pilula: 360px;
+
+  /* Espaçamentos */
+  --espaco-8: 8px;
+  --espaco-12: 12px;
+  --espaco-14: 14px;
+  --espaco-16: 16px;
+  --espaco-24: 24px;
+
+  /* Medidas de layout */
+  --largura-sidebar: 80px;
+}

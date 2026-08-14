@@ -1,0 +1,13 @@
+.layout {
+  min-height: 100vh;
+  background: var(--cor-fundo);
+}
+
+/* A sidebar é fixa, então a coluna de conteúdo anda para o lado dela. */
+.coluna {
+  margin-left: var(--largura-sidebar);
+}
+
+.principal {
+  padding: 0 56px 56px 50px;
+}

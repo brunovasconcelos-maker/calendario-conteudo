@@ -3,12 +3,7 @@
 @import '@fontsource/inter/400.css';
 @import '@fontsource/inter/500.css';
 @import '@fontsource/inter/600.css';
-
-:root {
-  --fonte: 'Inter', system-ui, sans-serif;
-  --cor-texto: #08060d;
-  --cor-fundo: #fff;
-}
+@import './styles/tokens.css';
 
 *,
 *::before,
@@ -19,7 +14,7 @@
 body {
   margin: 0;
   font-family: var(--fonte);
-  line-height: 1.45;
+  line-height: var(--altura-linha);
   color: var(--cor-texto);
   background: var(--cor-fundo);
   -webkit-font-smoothing: antialiased;

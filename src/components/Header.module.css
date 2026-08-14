@@ -1,0 +1,108 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 56px 56px 24px 50px;
+  background: var(--cor-fundo);
+}
+
+.linha {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.titulo {
+  margin: 0;
+  font-size: var(--texto-titulo-pagina);
+  font-weight: var(--peso-semibold);
+  line-height: var(--altura-linha);
+  color: var(--cor-texto);
+}
+
+.controles {
+  display: flex;
+  align-items: center;
+  gap: var(--espaco-24);
+}
+
+.mes {
+  display: flex;
+  align-items: center;
+  gap: var(--espaco-16);
+  padding: var(--espaco-8) var(--espaco-12);
+  border-radius: 50px;
+}
+
+.setas {
+  display: flex;
+  align-items: center;
+  gap: var(--espaco-24);
+}
+
+.seta {
+  display: flex;
+  width: 20px;
+  height: 19px;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.setaProxima img {
+  transform: rotate(180deg);
+}
+
+.mesLabel {
+  font-size: var(--texto-corpo);
+  font-weight: var(--peso-medio);
+  line-height: var(--altura-linha);
+  letter-spacing: -0.08px;
+  color: var(--cor-texto);
+  white-space: nowrap;
+}
+
+.filtro {
+  display: flex;
+  height: 40px;
+  flex: none;
+  align-items: center;
+  gap: var(--espaco-8);
+  padding: 0 20px;
+  border: 1px solid var(--cor-borda-sutil);
+  border-radius: var(--raio-pilula);
+  background: var(--cor-fundo);
+  cursor: pointer;
+}
+
+.filtroLabel {
+  font-size: var(--texto-botao);
+  font-weight: var(--peso-regular);
+  line-height: 18px;
+  letter-spacing: -0.08px;
+  color: var(--cor-texto);
+  white-space: nowrap;
+}
+
+.novoPost {
+  display: flex;
+  height: 40px;
+  flex: none;
+  align-items: center;
+  gap: var(--espaco-8);
+  padding: var(--espaco-12) var(--espaco-16);
+  border: none;
+  border-radius: var(--raio-pilula);
+  background: var(--cor-marca);
+  color: var(--cor-texto-invertido);
+  font-size: var(--texto-botao);
+  font-weight: var(--peso-medio);
+  line-height: var(--altura-linha);
+  white-space: nowrap;
+  cursor: pointer;
+}
