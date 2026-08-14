@@ -1,8 +1,9 @@
 .header {
   display: flex;
+  flex: none;
   flex-direction: column;
   align-items: flex-start;
-  padding: 56px 56px 24px 50px;
+  padding: 56px 56px 40px 50px;
   background: var(--cor-fundo);
 }
 
@@ -68,9 +69,13 @@
 }
 
 .filtro {
+  position: relative;
+  flex: none;
+}
+
+.filtroBotao {
   display: flex;
   height: 40px;
-  flex: none;
   align-items: center;
   gap: var(--espaco-8);
   padding: 0 20px;
@@ -78,6 +83,45 @@
   border-radius: var(--raio-pilula);
   background: var(--cor-fundo);
   cursor: pointer;
+}
+
+.opcoes {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + var(--espaco-8));
+  right: 0;
+  display: flex;
+  min-width: 100%;
+  flex-direction: column;
+  padding: var(--espaco-8);
+  border: 1px solid var(--cor-borda-sutil);
+  border-radius: var(--raio-caixa);
+  background: var(--cor-fundo);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.opcao {
+  padding: var(--espaco-8) var(--espaco-12);
+  border: none;
+  border-radius: var(--raio-campo);
+  background: transparent;
+  font-size: var(--texto-botao);
+  font-weight: var(--peso-regular);
+  line-height: 18px;
+  letter-spacing: -0.08px;
+  color: var(--cor-texto);
+  text-align: left;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.opcao:hover {
+  background: var(--cor-superficie);
+}
+
+.opcaoAtiva {
+  font-weight: var(--peso-medio);
+  background: var(--cor-superficie);
 }
 
 .filtroLabel {
