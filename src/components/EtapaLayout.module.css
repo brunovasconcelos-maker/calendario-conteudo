@@ -7,7 +7,7 @@
 
 .cabecalho {
   display: flex;
-  height: 96px;
+  height: var(--altura-cabecalho-etapa);
   flex: none;
   align-items: center;
   justify-content: space-between;
@@ -99,7 +99,7 @@
 }
 
 .etapas {
-  height: 80px;
+  height: var(--altura-barra-etapas);
   flex: none;
   background: var(--cor-fundo);
 }
