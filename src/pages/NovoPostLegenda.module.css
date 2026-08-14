@@ -1,0 +1,185 @@
+/* A etapa 2 é mais alta que a tela, então o miolo rola por dentro em vez de
+   empurrar o cabeçalho e a barra de etapas. */
+.rolagem {
+  min-height: 0;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.coluna {
+  display: flex;
+  width: 532px;
+  max-width: 100%;
+  flex-direction: column;
+  gap: 60px;
+  margin: 0 auto;
+  padding: 40px 0;
+}
+
+.previa {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--espaco-20);
+}
+
+/* Prévia estática: 256px de largura, como no Figma. A altura vem da proporção
+   do arquivo, com o teto do Figma — 320px no post e no carrossel, 455 no
+   vídeo, que é vertical. */
+.midia {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: min(256px, 100%);
+  max-height: 320px;
+  border-radius: 5px;
+  object-fit: contain;
+}
+
+.midiaVertical {
+  max-height: 455px;
+}
+
+/* --- carrossel --- */
+
+.tira {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.trilho {
+  display: flex;
+  gap: var(--espaco-12);
+  /* O deslocamento é calculado no componente: 268px por quadro (256 + 12 de
+     vão) e mais meio quadro, para o atual parar no meio da tira. */
+  transition: transform 200ms ease;
+}
+
+.quadro {
+  display: block;
+  width: 256px;
+  height: 320px;
+  flex: none;
+  border-radius: 5px;
+  object-fit: contain;
+  background: var(--cor-superficie);
+}
+
+/* As vizinhas ficam de fundo: aparecem, mas não competem com a atual. */
+.quadroApagado {
+  opacity: 0.35;
+}
+
+.seta {
+  position: absolute;
+  top: 160px;
+  right: -76px;
+  display: flex;
+  width: 56px;
+  height: 56px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid var(--cor-borda-acao);
+  border-radius: var(--raio-pilula);
+  background: var(--cor-fundo);
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.seta:hover {
+  background: var(--cor-superficie);
+}
+
+.bolinhas {
+  display: flex;
+  align-items: center;
+  gap: var(--espaco-8);
+}
+
+.bolinha {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: none;
+  border-radius: var(--raio-pilula);
+  background: var(--cor-borda-acao);
+  cursor: pointer;
+}
+
+/* A da vez vira pílula, como no Figma. */
+.bolinhaAtiva {
+  width: 16px;
+  background: var(--cor-texto-secundario);
+}
+
+/* --- campos --- */
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-20);
+}
+
+.cabecalhoDoCampo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espaco-20);
+}
+
+.rotulo {
+  font-size: var(--texto-corpo);
+  font-weight: var(--peso-medio);
+  line-height: 1;
+  letter-spacing: -0.23px;
+  color: var(--cor-texto-secundario);
+}
+
+.regenerar {
+  display: flex;
+  align-items: center;
+  gap: var(--espaco-8);
+  padding: 0;
+  border: none;
+  background: transparent;
+  font-size: var(--texto-corpo);
+  font-weight: var(--peso-medio);
+  line-height: 1;
+  letter-spacing: -0.23px;
+  color: var(--cor-texto);
+  cursor: pointer;
+}
+
+.regenerar:hover {
+  opacity: 0.7;
+}
+
+.caixa {
+  width: 100%;
+  height: 160px;
+  padding: var(--espaco-24);
+  border: 1px solid var(--cor-borda-upload);
+  border-radius: var(--raio-caixa);
+  background: var(--cor-superficie);
+  font-family: inherit;
+  font-size: var(--texto-corpo);
+  font-weight: var(--peso-medio);
+  line-height: 1.1;
+  letter-spacing: -0.23px;
+  color: var(--cor-texto-secundario);
+  /* Altura fixa vinda do Figma: quem redimensionasse quebraria o desenho. */
+  resize: none;
+}
+
+.caixa:focus {
+  border-color: var(--cor-texto-auxiliar);
+  outline: none;
+}
+
+.caixaAzul {
+  color: var(--cor-hashtag);
+}

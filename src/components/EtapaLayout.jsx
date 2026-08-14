@@ -1,27 +1,27 @@
 import { useNavigate } from 'react-router-dom'
 import Icone from './Icone.jsx'
-import { TOTAL_DE_ETAPAS } from '../lib/formatos.js'
 import avatar from '../assets/images/Group 63.png'
 import s from './EtapaLayout.module.css'
 
 /*
  * A moldura das etapas de criação do post: header em cima, barra de progresso
- * e navegação embaixo, conteúdo no meio. Serve todas as etapas — a de upload e
- * as que vierem.
+ * e navegação embaixo, conteúdo no meio. Serve todas as etapas.
  *
- * A barra de progresso marca o meio da etapa corrente, não o fim dela:
- * (etapa - 0,5) / 3. É o que dá os 240px de 1440 do Figma na etapa 1.
+ * A barra anda meia fatia por etapa: etapa / (2 × total). É o que o Figma
+ * desenha — 240px de 1440 na etapa 1, 480px na etapa 2. Vale para os dois
+ * fluxos, o de três etapas e o do Stories, que tem duas.
  */
 export default function EtapaLayout({
   titulo,
   etapa,
+  totalDeEtapas,
   onVoltar,
   continuarAtivo = false,
   onContinuar,
   children,
 }) {
   const navigate = useNavigate()
-  const progresso = ((etapa - 0.5) / TOTAL_DE_ETAPAS) * 100
+  const progresso = (etapa / (2 * totalDeEtapas)) * 100
 
   return (
     <div className={s.pagina}>
@@ -55,8 +55,8 @@ export default function EtapaLayout({
           role="progressbar"
           aria-valuenow={etapa}
           aria-valuemin={1}
-          aria-valuemax={TOTAL_DE_ETAPAS}
-          aria-label={`Etapa ${etapa} de ${TOTAL_DE_ETAPAS}`}
+          aria-valuemax={totalDeEtapas}
+          aria-label={`Etapa ${etapa} de ${totalDeEtapas}`}
         >
           <div className={s.barraCheia} style={{ width: `${progresso}%` }} />
         </div>
