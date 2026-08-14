@@ -21,6 +21,12 @@
   --cor-texto-tenue: #b2b9b9;
   --cor-scrim: rgba(0, 0, 0, 0.2);   /* fundo escurecido atrás do modal */
   --cor-borda-acao: #e3e6e6;         /* action/stroke — borda do header do fluxo */
+  --cor-fundo-desabilitado: #e3e6e6; /* background/disable — Continuar apagado */
+  --cor-texto-desabilitado: #b2b9b9; /* texto-icones/disable */
+  --cor-texto-apoio: #585c5c;        /* "Publicando como:" */
+  --cor-texto-auxiliar: #525b5b;     /* texto da área de upload */
+  --cor-borda-upload: #b2b9b9;       /* borda tracejada da área de upload */
+  --cor-veu-video: rgba(0, 0, 0, 0.16); /* véu sobre o vídeo, atrás do play */
 
   /* Tipografia — Inter em todo o site, servida localmente por
      @fontsource/inter (sem CDN), igual ao squad-identidade-visual.
