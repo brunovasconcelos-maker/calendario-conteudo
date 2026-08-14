@@ -1,0 +1,74 @@
+.calendario {
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
+}
+
+/* Fora da área que rola: fica parado enquanto as semanas passam por baixo. */
+.cabecalho {
+  display: grid;
+  flex: none;
+  grid-template-columns: var(--colunas-semana);
+  padding: 0 var(--respiro-lateral) var(--espaco-24);
+  border-bottom: 1px solid var(--cor-borda-sutil);
+}
+
+.nome {
+  min-width: 0;
+  font-size: var(--texto-botao);
+  font-weight: var(--peso-medio);
+  line-height: var(--altura-linha);
+  letter-spacing: -0.08px;
+  color: var(--cor-texto-secundario);
+  text-align: center;
+}
+
+.corpo {
+  min-height: 0;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.semana {
+  display: grid;
+  height: var(--altura-semana);
+  grid-template-columns: var(--colunas-semana);
+  border-bottom: 1px solid var(--cor-borda-sutil);
+}
+
+.dia {
+  min-width: 0;
+  padding: var(--espaco-12) var(--espaco-16);
+  border-left: 1px solid var(--cor-borda-sutil);
+}
+
+.dia:first-child {
+  border-left: none;
+}
+
+.numero {
+  display: inline-flex;
+  min-width: 28px;
+  height: 28px;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--texto-botao);
+  font-weight: var(--peso-medio);
+  line-height: var(--altura-linha);
+  letter-spacing: -0.08px;
+  color: var(--cor-texto-secundario);
+}
+
+/* Dias do mês vizinho: continuam na grade, mas apagados. */
+.diaForaDoMes .numero {
+  color: var(--cor-texto-tenue);
+}
+
+/* Hoje: mesmo círculo preto do semanal, num tamanho que serve ao número de
+   14px daqui — no semanal o número é 20px e o círculo, 40px. */
+.numeroHoje {
+  border-radius: var(--raio-pilula);
+  background: var(--cor-marca);
+  color: var(--cor-texto-invertido);
+}

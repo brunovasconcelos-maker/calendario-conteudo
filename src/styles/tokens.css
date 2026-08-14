@@ -16,6 +16,9 @@
   /* Fundo do item ativo da navegação. Sai como hex cru do Figma, sem
      variável própria no arquivo. */
   --cor-item-ativo: #e5e5e5;
+  /* Dias do mês vizinho, nas pontas da grade do mensal. O Figma desenha só o
+     mês corrente, então o tom apagado vem da mesma família do design. */
+  --cor-texto-tenue: #b2b9b9;
 
   /* Tipografia — Inter em todo o site, servida localmente por
      @fontsource/inter (sem CDN), igual ao squad-identidade-visual.
@@ -32,6 +35,8 @@
   --peso-semibold: 600; /* Figma: 590 */
 
   /* Raios */
+  --raio-campo: 4px;
+  --raio-caixa: 8px;
   --raio-icone: 12px;   /* slots da navegação */
   --raio-avatar: 300px;
   --raio-pilula: 360px;
@@ -49,4 +54,13 @@
      de fundo entre os dois. Por isso são duas medidas, e não uma. */
   --largura-sidebar: 76px;
   --deslocamento-conteudo: 80px;
+
+  /* As sete colunas do calendário, iguais e elásticas: é o que segura a
+     grade alinhada com o cabeçalho dos dias em qualquer largura. */
+  --colunas-semana: repeat(7, minmax(0, 1fr));
+  /* Altura fixa da linha de semana no mensal, medida no Figma (as linhas de
+     números caem em 187, 407, 627 e 847 — passo de 220). Vira altura por
+     conteúdo mais para a frente. */
+  --altura-semana: 220px;
+  --respiro-lateral: 24px;
 }
