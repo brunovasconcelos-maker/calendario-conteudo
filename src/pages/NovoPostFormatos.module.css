@@ -52,10 +52,14 @@
   padding: var(--espaco-24) 40px;
 }
 
+/* Os cards têm largura fixa e ficam centrados, então duas ou três plataformas
+   não esticam para preencher a linha. Os 808px do Figma são exatamente os
+   quatro cards do Instagram com os vãos: 4 × 193 + 3 × 12. */
 .formatos {
   display: flex;
-  width: 808px;
-  max-width: 100%;
+  max-width: 808px;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: var(--espaco-12);
 }
 
@@ -64,9 +68,9 @@
 .card {
   position: relative;
   display: flex;
+  width: var(--largura-card-formato);
   height: 200px;
-  min-width: 0;
-  flex: 1;
+  flex: none;
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;

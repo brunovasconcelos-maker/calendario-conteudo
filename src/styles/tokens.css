@@ -66,4 +66,6 @@
      conteúdo mais para a frente. */
   --altura-semana: 220px;
   --respiro-lateral: 24px;
+  /* Card de formato do Novo Post: medida fixa, igual nas três plataformas. */
+  --largura-card-formato: 193px;
 }
