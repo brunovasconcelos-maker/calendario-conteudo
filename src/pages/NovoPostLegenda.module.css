@@ -25,21 +25,25 @@
   gap: var(--espaco-20);
 }
 
-/* Prévia estática: 256px de largura, como no Figma. A altura vem da proporção
-   do arquivo, com o teto do Figma — 320px no post e no carrossel, 455 no
-   vídeo, que é vertical. */
+/*
+ * Prévia estática no quadro fixo do Figma: 256x320 no post e no carrossel,
+ * 256x455 no vídeo, que é vertical.
+ *
+ * Aqui é cover, e não contain: o quadro enche e o que sobra da proporção é
+ * cortado, como o Figma desenha. É só nesta prévia menor — na etapa 1 a mídia
+ * segue em contain, aparecendo inteira.
+ */
 .midia {
   display: block;
-  width: auto;
-  height: auto;
-  max-width: min(256px, 100%);
-  max-height: 320px;
+  width: 256px;
+  max-width: 100%;
+  height: 320px;
   border-radius: 5px;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 .midiaVertical {
-  max-height: 455px;
+  height: 455px;
 }
 
 /* --- carrossel --- */
@@ -58,13 +62,15 @@
   transition: transform 200ms ease;
 }
 
+/* Mesmo quadro fixo e mesmo cover da prévia solta. O fundo fica para o vão
+   enquanto a imagem carrega. */
 .quadro {
   display: block;
   width: 256px;
   height: 320px;
   flex: none;
   border-radius: 5px;
-  object-fit: contain;
+  object-fit: cover;
   background: var(--cor-superficie);
 }
 

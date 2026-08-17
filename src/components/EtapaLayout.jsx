@@ -7,9 +7,12 @@ import s from './EtapaLayout.module.css'
  * A moldura das etapas de criação do post: header em cima, barra de progresso
  * e navegação embaixo, conteúdo no meio. Serve todas as etapas.
  *
- * A barra anda meia fatia por etapa: etapa / (2 × total). É o que o Figma
- * desenha — 240px de 1440 na etapa 1, 480px na etapa 2. Vale para os dois
- * fluxos, o de três etapas e o do Stories, que tem duas.
+ * A barra anda uma fatia por etapa: etapa / total. Fecha em 100% na última,
+ * nos dois fluxos — o de três etapas e o do Stories, que tem duas.
+ *
+ * O Figma desenha a barra em metade disso (240px de 1440 na etapa 1, 480px na
+ * etapa 2), o que deixaria a última etapa parada na metade. A barra cheia no
+ * fim foi decisão de produto, contra o desenho.
  */
 export default function EtapaLayout({
   titulo,
@@ -21,7 +24,7 @@ export default function EtapaLayout({
   children,
 }) {
   const navigate = useNavigate()
-  const progresso = (etapa / (2 * totalDeEtapas)) * 100
+  const progresso = (etapa / totalDeEtapas) * 100
 
   return (
     <div className={s.pagina}>
