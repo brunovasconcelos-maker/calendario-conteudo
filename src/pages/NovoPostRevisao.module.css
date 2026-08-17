@@ -1,0 +1,15 @@
+/* O mockup costuma passar da altura da tela, então o miolo rola por dentro em
+   vez de empurrar o cabeçalho e a barra de etapas. */
+.rolagem {
+  min-height: 0;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.centro {
+  display: flex;
+  justify-content: center;
+  /* Folga lateral de 76px: é o vão onde as setas do carrossel ficam, e sem ela
+     a da esquerda sairia da área visível. */
+  padding: 40px 116px;
+}

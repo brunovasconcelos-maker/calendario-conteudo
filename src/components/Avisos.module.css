@@ -1,0 +1,33 @@
+/* Acima de tudo, inclusive dos modais, e sem capturar clique: é só recado. */
+.pilha {
+  position: fixed;
+  z-index: 200;
+  bottom: 24px;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--espaco-8);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.aviso {
+  padding: var(--espaco-12) var(--espaco-20);
+  border-radius: var(--raio-pilula);
+  background: var(--cor-marca);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  font-size: var(--texto-botao);
+  font-weight: var(--peso-medio);
+  line-height: var(--altura-linha);
+  color: var(--cor-texto-invertido);
+  white-space: nowrap;
+  animation: entrar 160ms ease-out;
+}
+
+@keyframes entrar {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
