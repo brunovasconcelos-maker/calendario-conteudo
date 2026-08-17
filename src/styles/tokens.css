@@ -28,6 +28,7 @@
   --cor-borda-upload: #b2b9b9;       /* borda tracejada da área de upload */
   --cor-veu-video: rgba(0, 0, 0, 0.16); /* véu sobre o vídeo, atrás do play */
   --cor-hashtag: #00376b;            /* azul das hashtags na etapa 2 */
+  --cor-agendado: #0091ff;           /* borda do card ainda por publicar */
 
   /* Tipografia — Inter em todo o site, servida localmente por
      @fontsource/inter (sem CDN), igual ao squad-identidade-visual.

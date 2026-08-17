@@ -106,6 +106,22 @@ export function caminhoDaEtapa(raiz, nome) {
 }
 
 /*
+ * O nome curto do formato, para os cards do calendário — "Novo Post Único" é
+ * título de tela, e no card entra só "Post Único".
+ */
+const ROTULOS_CURTOS = {
+  'post-unico': 'Post Único',
+  carrossel: 'Carrossel',
+  reels: 'Reels',
+  video: 'Vídeo',
+  stories: 'Stories',
+}
+
+export function rotuloCurtoDoFormato(idFormato) {
+  return ROTULOS_CURTOS[idFormato] ?? idFormato
+}
+
+/*
  * Devolve o formato só quando o par plataforma/formato existe de verdade —
  * /novo-post/tiktok/stories, por exemplo, não existe, e cai fora.
  */
