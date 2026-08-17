@@ -1,0 +1,261 @@
+.coluna {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--espaco-24);
+}
+
+/* --- texto do post --- */
+
+.texto {
+  width: 394px;
+  max-width: 100%;
+  margin: 0;
+  font-size: var(--texto-corpo);
+  font-weight: var(--peso-medio);
+  line-height: 1.1;
+  letter-spacing: -0.23px;
+  color: var(--cor-texto-secundario);
+}
+
+.hashtags {
+  color: var(--cor-hashtag);
+}
+
+/* O reel é estreito (256px), mas o texto embaixo dele acompanha a coluna. */
+.textoLargo {
+  width: 532px;
+}
+
+/* --- perfil --- */
+
+.perfil {
+  display: flex;
+  align-items: center;
+  gap: var(--espaco-8);
+}
+
+.avatar {
+  display: block;
+  flex: none;
+  border-radius: var(--raio-pilula);
+  object-fit: cover;
+}
+
+.nome,
+.nomeClaro {
+  font-size: var(--texto-botao);
+  font-weight: var(--peso-semibold);
+  line-height: var(--altura-linha);
+  white-space: nowrap;
+}
+
+.nome {
+  color: var(--cor-texto);
+}
+
+.nomeClaro {
+  color: var(--cor-texto-invertido);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/*
+ * Os SVGs vêm com o traço escuro; sobre mídia eles precisam ser claros. A
+ * sombra vai junto: branco sobre arquivo claro sem ela desaparece, e o arquivo
+ * é de quem usa — não dá para contar com um vídeo escuro.
+ */
+.iconeClaro {
+  filter: brightness(0) invert(1) drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5));
+}
+
+/* O balão de comentário do Figma entra espelhado. */
+.espelhado {
+  transform: scaleX(-1);
+}
+
+/* --- Instagram: feed --- */
+
+.acoesFeed {
+  display: flex;
+  width: 394px;
+  max-width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.grupoDeAcoes {
+  display: flex;
+  align-items: center;
+  gap: var(--espaco-16);
+}
+
+/* --- Instagram: reel --- */
+
+/* Véus de contraste atrás de qualquer enfeite branco sobre a mídia. */
+.veuInferior,
+.veuSuperior {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.veuInferior {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.55), transparent 45%);
+}
+
+.veuSuperior {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.45), transparent 35%);
+}
+
+/* Trilho vertical encostado na direita da mídia, como no app. */
+.trilhoReel {
+  position: absolute;
+  right: 12px;
+  bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--espaco-16);
+}
+
+/* --- Instagram: stories --- */
+
+.chromeStories {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-8);
+  padding: 8px 12px;
+}
+
+.barrinhas {
+  display: flex;
+  height: 2px;
+  gap: 3px;
+}
+
+.barrinhaAtiva {
+  flex: 1;
+  border-radius: var(--raio-pilula);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.topoStories {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.acoesStories {
+  display: flex;
+  align-items: center;
+  gap: var(--espaco-8);
+}
+
+/* --- TikTok --- */
+
+/* Escurece o pé do vídeo para o texto branco ter contraste. Mais forte que o
+   do reel porque aqui é texto corrido, e não só ícone. */
+.veuTiktok {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.8),
+    rgba(0, 0, 0, 0.35) 30%,
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+.trilhoTiktok {
+  position: absolute;
+  right: 8px;
+  bottom: 96px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--espaco-16);
+}
+
+.avatarTrilho {
+  display: flex;
+  width: 36px;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: var(--raio-pilula);
+}
+
+.rodapeTiktok {
+  position: absolute;
+  right: 56px;
+  bottom: 12px;
+  left: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-8);
+}
+
+/* Três linhas e corta, como o TikTok faz: legenda longa tomaria o vídeo. */
+.textoClaro {
+  display: -webkit-box;
+  width: 100%;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  font-size: 12px;
+  line-height: 1.35;
+  color: var(--cor-texto-invertido);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+.textoClaro .hashtags {
+  color: #9fd4ff;
+}
+
+/* --- LinkedIn --- */
+
+.cardLinkedin {
+  display: flex;
+  width: 460px;
+  max-width: 100%;
+  flex-direction: column;
+  gap: var(--espaco-12);
+  padding: var(--espaco-16);
+  border: 1px solid var(--cor-borda-acao);
+  border-radius: var(--raio-caixa);
+  background: var(--cor-fundo);
+}
+
+.autorLinkedin {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.textoLinkedin {
+  width: 100%;
+}
+
+.reacoesLinkedin {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--espaco-12);
+  border-top: 1px solid var(--cor-borda-acao);
+}
+
+.reacao {
+  display: flex;
+  align-items: center;
+  gap: var(--espaco-8);
+  font-size: var(--texto-botao);
+  font-weight: var(--peso-medio);
+  line-height: var(--altura-linha);
+  color: var(--cor-texto-secundario);
+}

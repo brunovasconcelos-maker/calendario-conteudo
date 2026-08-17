@@ -1,0 +1,103 @@
+/* Âncora das setas e das bolinhas, que ficam fora do quadro. */
+.bloco {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.quadro {
+  position: relative;
+  overflow: hidden;
+  background: var(--cor-superficie);
+}
+
+/* As duas molduras do Figma: 394x492,5 no feed, 256x455 no vertical. */
+.feed {
+  width: 394px;
+  max-width: 100%;
+  aspect-ratio: 394 / 492.5;
+  border-radius: 8px;
+}
+
+.vertical {
+  width: 256px;
+  max-width: 100%;
+  aspect-ratio: 256 / 455;
+  border-radius: 4px;
+}
+
+.midia {
+  display: block;
+  width: 100%;
+  height: 100%;
+  flex: none;
+  /* cover no mockup: a moldura da rede social é fixa e o arquivo enche, como
+     ele encheria no app de verdade. */
+  object-fit: cover;
+}
+
+/* O carrossel desliza dentro do quadro, um quadro por vez. */
+.tira {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.trilho {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 220ms ease;
+}
+
+.seta {
+  position: absolute;
+  top: 50%;
+  display: flex;
+  width: 56px;
+  height: 56px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid var(--cor-borda-acao);
+  border-radius: var(--raio-pilula);
+  background: var(--cor-fundo);
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.seta:hover {
+  background: var(--cor-superficie);
+}
+
+/* Fora do quadro, nos vãos dos lados, como nas etapas 1 e 2. */
+.setaEsquerda {
+  left: -76px;
+}
+
+.setaDireita {
+  right: -76px;
+}
+
+.bolinhas {
+  display: flex;
+  align-items: center;
+  gap: var(--espaco-8);
+  margin-top: var(--espaco-16);
+}
+
+.bolinha {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: none;
+  border-radius: var(--raio-pilula);
+  background: var(--cor-borda-acao);
+  cursor: pointer;
+}
+
+.bolinhaAtiva {
+  width: 16px;
+  background: var(--cor-texto-secundario);
+}

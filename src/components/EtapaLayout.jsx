@@ -21,6 +21,9 @@ export default function EtapaLayout({
   onVoltar,
   continuarAtivo = false,
   onContinuar,
+  // Botões da direita quando não é um "Continuar" só — a última etapa tem dois.
+  // Cada item: { rotulo, onClick, variante: 'primaria' | 'contorno' }.
+  acoes,
   children,
 }) {
   const navigate = useNavigate()
@@ -68,14 +71,29 @@ export default function EtapaLayout({
           <button type="button" className={s.voltar} onClick={onVoltar}>
             Voltar
           </button>
-          <button
-            type="button"
-            className={s.continuar}
-            disabled={!continuarAtivo}
-            onClick={onContinuar}
-          >
-            Continuar
-          </button>
+          {acoes ? (
+            <div className={s.acoes}>
+              {acoes.map((acao) => (
+                <button
+                  key={acao.rotulo}
+                  type="button"
+                  className={acao.variante === 'contorno' ? s.contorno : s.continuar}
+                  onClick={acao.onClick}
+                >
+                  {acao.rotulo}
+                </button>
+              ))}
+            </div>
+          ) : (
+            <button
+              type="button"
+              className={s.continuar}
+              disabled={!continuarAtivo}
+              onClick={onContinuar}
+            >
+              Continuar
+            </button>
+          )}
         </div>
       </div>
     </div>
