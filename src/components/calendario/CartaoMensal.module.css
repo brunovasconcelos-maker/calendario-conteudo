@@ -1,0 +1,55 @@
+.cartao {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-8);
+  padding: var(--espaco-8);
+  border: 1px solid;
+  border-radius: var(--raio-caixa);
+  background: var(--cor-fundo);
+}
+
+.postado {
+  border-color: var(--cor-borda-acao);
+}
+
+.agendado {
+  border-color: var(--cor-agendado);
+}
+
+.linha {
+  display: flex;
+  align-items: center;
+  gap: var(--espaco-8);
+  font-size: 12px;
+  font-weight: var(--peso-medio);
+  line-height: var(--altura-linha);
+  letter-spacing: -0.645px;
+}
+
+.tipo {
+  min-width: 0;
+  flex: 1;
+  overflow: hidden;
+  color: var(--cor-texto);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hora {
+  flex: none;
+  color: var(--cor-texto-secundario);
+}
+
+/* Duas linhas e corta. */
+.legenda {
+  display: -webkit-box;
+  margin: 0;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  font-size: 12px;
+  font-weight: var(--peso-medio);
+  line-height: var(--altura-linha);
+  letter-spacing: -0.645px;
+  color: var(--cor-texto-secundario);
+}

@@ -61,11 +61,21 @@
   grid-template-columns: var(--colunas-semana);
 }
 
-/* As divisórias verticais são bordas das colunas, e não uma imagem: assim
-   acompanham a altura e a largura sozinhas. A primeira não leva borda para a
-   grade não abrir com um risco colado na sidebar. */
+/*
+ * As divisórias verticais são bordas das colunas, e não uma imagem: assim
+ * acompanham a altura e a largura sozinhas. A primeira não leva borda para a
+ * grade não abrir com um risco colado na sidebar.
+ *
+ * Os cards do dia empilham aqui e rolam por dentro da coluna quando passam da
+ * altura, para um dia cheio não esticar a grade toda.
+ */
 .coluna {
+  display: flex;
   min-width: 0;
+  flex-direction: column;
+  gap: var(--espaco-12);
+  padding: var(--espaco-8);
+  overflow-y: auto;
   border-left: 1px solid var(--cor-borda-sutil);
 }
 

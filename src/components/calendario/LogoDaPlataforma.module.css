@@ -1,0 +1,9 @@
+.circulo {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: var(--raio-pilula);
+  background: var(--cor-borda-sutil);
+}

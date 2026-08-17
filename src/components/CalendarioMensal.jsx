@@ -1,10 +1,12 @@
 import { useEffect, useRef } from 'react'
+import CartaoMensal from './calendario/CartaoMensal.jsx'
+import { usePosts } from '../hooks/usePosts.js'
 import { DIAS_DA_SEMANA, mesmoDia, semanasDoMes } from '../lib/datas.js'
+import { postsDoDia } from '../lib/postsSalvos.js'
 import s from './CalendarioMensal.module.css'
 
 /*
- * O mês inteiro, uma linha por semana. Só a grade: os dias estão vazios de
- * propósito, os cards entram depois.
+ * O mês inteiro, uma linha por semana, com os posts salvos de cada dia.
  *
  * O cabeçalho dos dias fica fora da área que rola, então ele não sai da tela
  * quando as semanas sobem.
@@ -13,6 +15,8 @@ export default function CalendarioMensal({ referencia, hoje }) {
   const semanas = semanasDoMes(referencia)
   const mesCorrente = referencia.getMonth()
   const corpoRef = useRef(null)
+  const posts = usePosts()
+  const agora = new Date()
 
   // Trocou de mês, a rolagem volta ao topo: o dia 1º está sempre na primeira
   // linha, então é ali que a visão precisa estar ancorada.
@@ -46,6 +50,12 @@ export default function CalendarioMensal({ referencia, hoje }) {
                   <span className={`${s.numero} ${ehHoje ? s.numeroHoje : ''}`}>
                     {dia.getDate()}
                   </span>
+
+                  <div className={s.cartoes}>
+                    {postsDoDia(posts, dia).map((post) => (
+                      <CartaoMensal key={post.id} post={post} agora={agora} />
+                    ))}
+                  </div>
                 </div>
               )
             })}

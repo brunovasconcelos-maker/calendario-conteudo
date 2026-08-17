@@ -37,8 +37,11 @@
   border-bottom: 1px solid var(--cor-borda-sutil);
 }
 
+/* Coluna, para o número ficar em cima e os cards embaixo. */
 .dia {
+  display: flex;
   min-width: 0;
+  flex-direction: column;
   padding: var(--espaco-12) var(--espaco-16);
   border-left: 1px solid var(--cor-borda-sutil);
 }
@@ -47,10 +50,13 @@
   border-left: none;
 }
 
+/* align-self segura a largura no conteúdo: o dia é uma coluna flex, e sem isso
+   o círculo de hoje esticaria de ponta a ponta da célula. */
 .numero {
   display: inline-flex;
   min-width: 28px;
   height: 28px;
+  align-self: flex-start;
   align-items: center;
   justify-content: center;
   font-size: var(--texto-botao);
@@ -71,4 +77,14 @@
   border-radius: var(--raio-pilula);
   background: var(--cor-marca);
   color: var(--cor-texto-invertido);
+}
+
+/* A célula do mês tem altura fixa, então os cards rolam por dentro dela. */
+.cartoes {
+  display: flex;
+  min-height: 0;
+  flex-direction: column;
+  gap: var(--espaco-8);
+  margin-top: var(--espaco-8);
+  overflow-y: auto;
 }
