@@ -84,11 +84,23 @@ export default function NovoPostLegenda() {
                 </div>
 
                 {/* Fora da tira de propósito: ela recorta o que passa das
-                    bordas para as vizinhas espiarem, e levaria a seta junto. */}
+                    bordas para as vizinhas espiarem, e levaria as setas junto.
+                    Cada uma só existe quando há para onde ir, como na etapa 1. */}
+                {uploads.temAnterior && (
+                  <button
+                    type="button"
+                    className={`${s.seta} ${s.setaEsquerda}`}
+                    aria-label="Imagem anterior"
+                    onClick={() => uploads.irPara(uploads.indice - 1)}
+                  >
+                    <Icone nome="CaretLeft" tamanho={24} />
+                  </button>
+                )}
+
                 {uploads.temProximo && (
                   <button
                     type="button"
-                    className={s.seta}
+                    className={`${s.seta} ${s.setaDireita}`}
                     aria-label="Próxima imagem"
                     onClick={() => uploads.irPara(uploads.indice + 1)}
                   >
