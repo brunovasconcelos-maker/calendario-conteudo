@@ -79,10 +79,11 @@
   opacity: 0.35;
 }
 
+/* As setas ficam nos vãos ao lado da tira, centradas na altura do quadro de
+   320px. Absolutas porque a tira recorta o que passa das bordas dela. */
 .seta {
   position: absolute;
   top: 160px;
-  right: -76px;
   display: flex;
   width: 56px;
   height: 56px;
@@ -94,6 +95,14 @@
   background: var(--cor-fundo);
   transform: translateY(-50%);
   cursor: pointer;
+}
+
+.setaEsquerda {
+  left: -76px;
+}
+
+.setaDireita {
+  right: -76px;
 }
 
 .seta:hover {
