@@ -47,6 +47,7 @@ export default function ModalDoPost({ postId, onFechar }) {
   if (!post) return null
 
   const formato = acharFormato(post.plataforma, post.formato)
+  const moldura = molduraDoFormato(formato)
   const postado = jaFoiPostado(post)
 
   const apagar = () => {
@@ -115,19 +116,22 @@ export default function ModalDoPost({ postId, onFechar }) {
 
           <div className={s.corpo}>
             <div className={s.palco}>
-              <div className={s.midia}>
+              <div className={`${s.midia} ${moldura === 'vertical' ? s.midiaVertical : ''}`}>
                 <MidiaDaPrevia
                   uploads={midias}
-                  formato={molduraDoFormato(formato)}
+                  formato={moldura}
                   carrossel={formato?.comportamento === CARROSSEL}
+                  caber
                 />
               </div>
 
               {/* Só no Postado, e ainda sem tela de métricas para abrir. */}
               {postado && (
-                <button type="button" className={s.metricas} aria-label="Ver métricas">
-                  <Icone nome="ChartLineUp" tamanho={20} />
-                </button>
+                <div className={s.metricasColuna}>
+                  <button type="button" className={s.metricas} aria-label="Ver métricas">
+                    <Icone nome="ChartLineUp" tamanho={20} />
+                  </button>
+                </div>
               )}
             </div>
 
