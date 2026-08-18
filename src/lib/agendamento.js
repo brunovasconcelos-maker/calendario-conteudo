@@ -1,4 +1,4 @@
-import { DIAS_DA_SEMANA, MESES } from './datas.js'
+import { DIAS_DA_SEMANA, DIAS_DA_SEMANA_LONGOS, MESES } from './datas.js'
 
 const doisDigitos = (n) => String(n).padStart(2, '0')
 
@@ -48,4 +48,15 @@ export function diaPorExtenso(valorDoCampo) {
   const [ano, mes, dia] = valorDoCampo.split('-').map(Number)
   const quando = new Date(ano, mes - 1, dia)
   return `${DIAS_DA_SEMANA[quando.getDay()].toUpperCase()}, ${dia} de ${MESES[mes - 1]} de ${ano}`
+}
+
+/*
+ * "Quarta-feira, 12 de Agosto, 2026" — a linha das métricas (node 6023:6641),
+ * com o dia da semana escrito por inteiro e a vírgula antes do ano, como o
+ * Figma escreve ali.
+ */
+export function diaPorExtensoLongo(valorDoCampo) {
+  const [ano, mes, dia] = valorDoCampo.split('-').map(Number)
+  const quando = new Date(ano, mes - 1, dia)
+  return `${DIAS_DA_SEMANA_LONGOS[quando.getDay()]}, ${dia} de ${MESES[mes - 1]}, ${ano}`
 }

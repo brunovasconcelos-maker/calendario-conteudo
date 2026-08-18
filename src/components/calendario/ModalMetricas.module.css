@@ -1,0 +1,155 @@
+.scrim {
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--espaco-24);
+  background: var(--cor-scrim);
+}
+
+/* 580px de largura, como o detalhe do post — os dois são a mesma caixa vista
+   de dois lados, e trocar de um para o outro não pode mudar o tamanho. */
+.caixa {
+  display: flex;
+  max-height: 100%;
+  width: 580px;
+  max-width: 100%;
+  flex-direction: column;
+  gap: clamp(var(--espaco-20), 4vh, 40px);
+  padding: var(--espaco-24) var(--espaco-24) clamp(var(--espaco-20), 4vh, 40px);
+  border-radius: var(--raio-card);
+  background: var(--cor-fundo);
+}
+
+.cabecalho {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: var(--espaco-12);
+}
+
+.titulo {
+  min-width: 0;
+  flex: 1;
+  margin: 0;
+  font-size: 20px;
+  font-weight: var(--peso-semibold);
+  line-height: var(--altura-linha);
+  letter-spacing: -0.26px;
+  color: var(--cor-texto);
+}
+
+.iconeBotao {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  border-radius: var(--raio-pilula);
+  background: transparent;
+  cursor: pointer;
+}
+
+.iconeBotao:hover {
+  background: var(--cor-superficie);
+}
+
+.corpo {
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--espaco-20);
+  overflow-y: auto;
+}
+
+.quando {
+  flex: none;
+  margin: 0;
+  font-size: var(--texto-corpo);
+  font-weight: var(--peso-medio);
+  line-height: 1.1;
+  letter-spacing: -0.23px;
+  color: var(--cor-texto-secundario);
+}
+
+.grade {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  gap: var(--espaco-12);
+}
+
+/* Duas em cima e três embaixo, todas dividindo a largura por igual. */
+.linha {
+  display: flex;
+  align-items: stretch;
+  gap: var(--espaco-12);
+}
+
+/*
+ * O número em cima e o rótulo embaixo, com o vão entre eles: por isso
+ * space-between e altura fixa, e não um gap — é o que mantém os rótulos
+ * alinhados entre cartões de linhas diferentes.
+ */
+.cartao {
+  display: flex;
+  min-width: 0;
+  /* 160px é a altura do Figma, e é o teto: abaixo de ~615px de janela as duas
+     linhas de cartão não caberiam, e encolher aqui é o que evita a rolagem —
+     o mesmo acordo do detalhe do post. */
+  height: min(160px, 26vh);
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--espaco-20);
+  border-radius: var(--raio-card);
+  background: var(--cor-superficie);
+}
+
+.topo {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--espaco-12);
+}
+
+.numero {
+  min-width: 0;
+  overflow: hidden;
+  font-size: 40px;
+  font-weight: var(--peso-medio);
+  /* leading-none do Figma: o número é a peça alta do cartão e não pode ganhar
+     entrelinha, senão desencosta do topo. */
+  line-height: 1;
+  letter-spacing: -0.23px;
+  color: var(--cor-texto);
+  text-overflow: ellipsis;
+}
+
+/* Ainda não é botão: o módulo de comentários é passo futuro. */
+.seta {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  margin: -8px -8px 0 0;
+}
+
+.rotulo {
+  overflow: hidden;
+  font-size: var(--texto-botao);
+  font-weight: var(--peso-medio);
+  line-height: 20px;
+  letter-spacing: -0.23px;
+  color: var(--cor-texto-auxiliar);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

@@ -5,6 +5,18 @@
 
 export const DIAS_DA_SEMANA = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab']
 
+// Por extenso, para as linhas de texto — o cabeçalho da grade continua com as
+// abreviações, que são o que cabe na coluna.
+export const DIAS_DA_SEMANA_LONGOS = [
+  'Domingo',
+  'Segunda-feira',
+  'Terça-feira',
+  'Quarta-feira',
+  'Quinta-feira',
+  'Sexta-feira',
+  'Sábado',
+]
+
 export const MESES = [
   'Janeiro',
   'Fevereiro',

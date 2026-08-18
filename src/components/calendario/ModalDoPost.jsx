@@ -3,6 +3,7 @@ import Icone from '../Icone.jsx'
 import LogoDaPlataforma from './LogoDaPlataforma.jsx'
 import MidiaDaPrevia from '../previa/MidiaDaPrevia.jsx'
 import ModalAgendar from '../ModalAgendar.jsx'
+import ModalMetricas from './ModalMetricas.jsx'
 import { useMidiasDoPost } from '../../hooks/useMidiasDoPost.js'
 import { usePosts } from '../../hooks/usePosts.js'
 import { useAvisos } from '../../hooks/useAvisos.js'
@@ -31,17 +32,25 @@ export default function ModalDoPost({ postId, onFechar }) {
   const { avisar } = useAvisos()
   const [reagendando, setReagendando] = useState(false)
   const [confirmandoApagar, setConfirmandoApagar] = useState(false)
+  const [vendoMetricas, setVendoMetricas] = useState(false)
   const caixaRef = useRef(null)
   const midias = useMidiasDoPost(post)
 
+  /*
+   * O Esc daqui fica de fora enquanto outra caixa está por cima. Elas têm o
+   * próprio Esc, e este continuaria valendo mesmo quando este modal não está
+   * na tela — a tecla fecharia as duas de uma vez, em vez de só a de cima.
+   */
   useEffect(() => {
+    if (reagendando || vendoMetricas) return undefined
+
     const aoTeclar = (evento) => {
       if (evento.key === 'Escape') onFechar()
     }
 
     document.addEventListener('keydown', aoTeclar)
     return () => document.removeEventListener('keydown', aoTeclar)
-  }, [onFechar])
+  }, [onFechar, reagendando, vendoMetricas])
 
   // Sumiu da lista (apagado aqui ou em outra aba): não há o que mostrar.
   if (!post) return null
@@ -72,6 +81,25 @@ export default function ModalDoPost({ postId, onFechar }) {
       via: 'agora',
     })
     avisar('Post publicado!')
+  }
+
+  /*
+   * As métricas entram no lugar do detalhe, e não por cima: o Figma desenha uma
+   * caixa só, e empilhar dois scrims escureceria o calendário duas vezes. A
+   * seta de lá volta para cá; o X fecha os dois.
+   *
+   * O `postado` no teste é a guarda para o post que deixou de ser passado
+   * enquanto a tela estava aberta — reagendado em outra aba, por exemplo: aí
+   * não há o que medir, e a volta é para o detalhe.
+   */
+  if (vendoMetricas && postado) {
+    return (
+      <ModalMetricas
+        post={post}
+        onVoltar={() => setVendoMetricas(false)}
+        onFechar={onFechar}
+      />
+    )
   }
 
   return (
@@ -125,10 +153,15 @@ export default function ModalDoPost({ postId, onFechar }) {
                 />
               </div>
 
-              {/* Só no Postado, e ainda sem tela de métricas para abrir. */}
+              {/* Só no Postado: o que ainda não foi publicado não tem número. */}
               {postado && (
                 <div className={s.metricasColuna}>
-                  <button type="button" className={s.metricas} aria-label="Ver métricas">
+                  <button
+                    type="button"
+                    className={s.metricas}
+                    aria-label="Ver métricas"
+                    onClick={() => setVendoMetricas(true)}
+                  >
                     <Icone nome="ChartLineUp" tamanho={20} />
                   </button>
                 </div>
