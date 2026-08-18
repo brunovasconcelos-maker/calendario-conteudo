@@ -1,11 +1,22 @@
+/* Mesmo caso do semanal: é botão, e o navegador precisa parar de desenhá-lo
+   como um. */
 .cartao {
   display: flex;
+  width: 100%;
+  flex: none;
   flex-direction: column;
   gap: var(--espaco-8);
   padding: var(--espaco-8);
   border: 1px solid;
   border-radius: var(--raio-caixa);
   background: var(--cor-fundo);
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.cartao:hover {
+  background: var(--cor-superficie);
 }
 
 .postado {

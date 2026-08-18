@@ -15,11 +15,15 @@ import s from './ModalAgendar.module.css'
  * o que a pessoa digita, e daria para salvar uma data que não existe. Com os
  * nativos, o navegador cuida do calendário, do teclado e do formato local — o
  * "por extenso" do Figma volta no aviso de confirmação.
+ *
+ * Sem `dataInicial` e `horaInicial` os campos abrem em hoje e no horário
+ * sugerido, como na criação. O reagendar, que já tem um horário marcado, passa
+ * o do post.
  */
-export default function ModalAgendar({ onCancelar, onAgendar }) {
+export default function ModalAgendar({ onCancelar, onAgendar, dataInicial, horaInicial }) {
   const hoje = new Date()
-  const [data, setData] = useState(() => paraCampoDeData(hoje))
-  const [hora, setHora] = useState(() => paraCampoDeHora(horarioSugerido(hoje)))
+  const [data, setData] = useState(() => dataInicial ?? paraCampoDeData(hoje))
+  const [hora, setHora] = useState(() => horaInicial ?? paraCampoDeHora(horarioSugerido(hoje)))
   const caixaRef = useRef(null)
 
   useEffect(() => {

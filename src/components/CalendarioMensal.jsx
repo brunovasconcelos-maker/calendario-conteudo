@@ -11,7 +11,7 @@ import s from './CalendarioMensal.module.css'
  * O cabeçalho dos dias fica fora da área que rola, então ele não sai da tela
  * quando as semanas sobem.
  */
-export default function CalendarioMensal({ referencia, hoje }) {
+export default function CalendarioMensal({ referencia, hoje, onAbrirPost }) {
   const semanas = semanasDoMes(referencia)
   const mesCorrente = referencia.getMonth()
   const corpoRef = useRef(null)
@@ -53,7 +53,12 @@ export default function CalendarioMensal({ referencia, hoje }) {
 
                   <div className={s.cartoes}>
                     {postsDoDia(posts, dia).map((post) => (
-                      <CartaoMensal key={post.id} post={post} agora={agora} />
+                      <CartaoMensal
+                        key={post.id}
+                        post={post}
+                        agora={agora}
+                        onAbrir={onAbrirPost}
+                      />
                     ))}
                   </div>
                 </div>

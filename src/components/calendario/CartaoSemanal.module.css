@@ -1,11 +1,22 @@
+/* É um <button>, então desfaz o que o navegador põe nele e mantém o texto
+   alinhado à esquerda como em qualquer card. */
 .cartao {
   display: flex;
+  width: 100%;
+  flex: none;
   flex-direction: column;
   gap: var(--espaco-12);
   padding: var(--espaco-8);
   border: 1px solid;
   border-radius: var(--raio-caixa);
   background: var(--cor-fundo);
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.cartao:hover {
+  background: var(--cor-superficie);
 }
 
 /* A borda diz o estado: cinza para o que já foi, azul para o que está por vir. */

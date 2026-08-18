@@ -8,13 +8,17 @@ import s from './CartaoMensal.module.css'
  * selo da rede, tipo, horário e duas linhas de legenda. Sem miniatura, que na
  * célula do mês não caberia.
  *
- * Legenda vazia não sai, igual ao semanal.
+ * Legenda vazia não sai, igual ao semanal. Clicar abre o detalhe, igual também.
  */
-export default function CartaoMensal({ post, agora }) {
+export default function CartaoMensal({ post, agora, onAbrir }) {
   const postado = jaFoiPostado(post, agora)
 
   return (
-    <article className={`${s.cartao} ${postado ? s.postado : s.agendado}`}>
+    <button
+      type="button"
+      className={`${s.cartao} ${postado ? s.postado : s.agendado}`}
+      onClick={() => onAbrir(post.id)}
+    >
       <div className={s.linha}>
         <LogoDaPlataforma plataforma={post.plataforma} tamanho={14} />
         <span className={s.tipo}>{rotuloCurtoDoFormato(post.formato)}</span>
@@ -22,6 +26,6 @@ export default function CartaoMensal({ post, agora }) {
       </div>
 
       {post.legenda?.trim() && <p className={s.legenda}>{post.legenda}</p>}
-    </article>
+    </button>
   )
 }
