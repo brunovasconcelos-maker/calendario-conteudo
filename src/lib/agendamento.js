@@ -1,4 +1,4 @@
-import { MESES } from './datas.js'
+import { DIAS_DA_SEMANA, MESES } from './datas.js'
 
 const doisDigitos = (n) => String(n).padStart(2, '0')
 
@@ -37,4 +37,15 @@ export function horarioSugerido(agora = new Date()) {
 export function dataPorExtenso(valorDoCampo, valorDaHora) {
   const [ano, mes, dia] = valorDoCampo.split('-').map(Number)
   return `${dia} ${MESES[mes - 1]} ${ano} às ${valorDaHora}`
+}
+
+/*
+ * "QUA, 12 de Agosto de 2026" — a linha do detalhe do post (node 6023:7390).
+ * O dia da semana sai do próprio Date, e não de conta com o dia do mês, para
+ * não errar em ano bissexto nem na virada de mês.
+ */
+export function diaPorExtenso(valorDoCampo) {
+  const [ano, mes, dia] = valorDoCampo.split('-').map(Number)
+  const quando = new Date(ano, mes - 1, dia)
+  return `${DIAS_DA_SEMANA[quando.getDay()].toUpperCase()}, ${dia} de ${MESES[mes - 1]} de ${ano}`
 }

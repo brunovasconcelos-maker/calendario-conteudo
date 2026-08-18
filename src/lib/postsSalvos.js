@@ -19,13 +19,12 @@ export function lerPosts() {
 }
 
 /*
- * Devolve true quando gravou. Falha de cota devolve false em vez de estourar:
- * quem chamou decide o que dizer, e o fluxo de publicar não quebra por causa
- * do armazenamento.
+ * Grava a lista inteira. Devolve true quando gravou. Falha de cota devolve
+ * false em vez de estourar: quem chamou decide o que dizer, e o fluxo de
+ * publicar não quebra por causa do armazenamento.
  */
-export function salvarPost(post) {
+function gravar(lista) {
   try {
-    const lista = [...lerPosts(), post]
     localStorage.setItem(CHAVE, JSON.stringify(lista))
     // Avisa as telas abertas nesta aba; o 'storage' do navegador só cobre as
     // outras.
@@ -35,6 +34,23 @@ export function salvarPost(post) {
     console.error('Não foi possível salvar o post no navegador.', erro)
     return false
   }
+}
+
+export function salvarPost(post) {
+  return gravar([...lerPosts(), post])
+}
+
+/*
+ * Troca alguns campos de um post e regrava. Apagar já ocupava espaço, então
+ * mudar data e hora nunca esbarra na cota — mas o retorno segue o mesmo
+ * contrato do salvar, para quem chama não precisar saber disso.
+ */
+export function atualizarPost(id, mudancas) {
+  return gravar(lerPosts().map((post) => (post.id === id ? { ...post, ...mudancas } : post)))
+}
+
+export function apagarPost(id) {
+  return gravar(lerPosts().filter((post) => post.id !== id))
 }
 
 export function ouvirPosts(aoMudar) {

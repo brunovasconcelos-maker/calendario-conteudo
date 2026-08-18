@@ -40,7 +40,10 @@ export default function MidiaDaPrevia({
         ) : atual.tipo === 'video' ? (
           <video className={s.midia} src={atual.url} muted playsInline />
         ) : (
-          <img className={s.midia} src={atual.url} alt={atual.nome} />
+          /* Sem url o quadro fica vazio: é o caso da miniatura que não deu
+             para gerar, num post já salvo. Um <img> sem src mostraria o
+             ícone de imagem quebrada. */
+          atual.url && <img className={s.midia} src={atual.url} alt={atual.nome} />
         )}
 
         {children}

@@ -11,7 +11,7 @@ import s from './CalendarioSemanal.module.css'
  * (--colunas-semana), então o número do dia fica sempre em cima da sua
  * coluna, em qualquer largura de tela.
  */
-export default function CalendarioSemanal({ referencia, hoje }) {
+export default function CalendarioSemanal({ referencia, hoje, onAbrirPost }) {
   const dias = semanaDe(referencia)
   const posts = usePosts()
   // Uma leitura só do relógio para toda a grade: assim dois cards do mesmo
@@ -42,7 +42,12 @@ export default function CalendarioSemanal({ referencia, hoje }) {
           {dias.map((dia) => (
             <div key={dia.toISOString()} className={s.coluna}>
               {postsDoDia(posts, dia).map((post) => (
-                <CartaoSemanal key={post.id} post={post} agora={agora} />
+                <CartaoSemanal
+                  key={post.id}
+                  post={post}
+                  agora={agora}
+                  onAbrir={onAbrirPost}
+                />
               ))}
             </div>
           ))}

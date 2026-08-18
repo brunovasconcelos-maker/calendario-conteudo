@@ -11,17 +11,20 @@ import s from './CartaoSemanal.module.css'
  * Legenda vazia não vira caixa vazia nem texto de enfeite: a linha simplesmente
  * não sai.
  *
- * Clicar ainda não faz nada — a tela de detalhe é passo futuro. Por isso é
- * <article>, e não botão: anunciar um botão que não age atrapalha quem navega
- * por leitor de tela.
+ * Clicar abre o detalhe do post, então agora é botão de verdade: quem navega
+ * por teclado ou leitor de tela chega nele e ouve o que ele faz.
  */
-export default function CartaoSemanal({ post, agora }) {
+export default function CartaoSemanal({ post, agora, onAbrir }) {
   const postado = jaFoiPostado(post, agora)
   const capa = post.midias?.[0]
   const vertical = capa?.tipo === 'video' || post.formato === 'stories'
 
   return (
-    <article className={`${s.cartao} ${postado ? s.postado : s.agendado}`}>
+    <button
+      type="button"
+      className={`${s.cartao} ${postado ? s.postado : s.agendado}`}
+      onClick={() => onAbrir(post.id)}
+    >
       <div className={s.topo}>
         <LogoDaPlataforma plataforma={post.plataforma} tamanho={24} />
         {postado && (
@@ -42,6 +45,6 @@ export default function CartaoSemanal({ post, agora }) {
       </div>
 
       {post.legenda?.trim() && <p className={s.legenda}>{post.legenda}</p>}
-    </article>
+    </button>
   )
 }

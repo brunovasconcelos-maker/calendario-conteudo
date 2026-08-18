@@ -29,6 +29,9 @@
   --cor-veu-video: rgba(0, 0, 0, 0.16); /* véu sobre o vídeo, atrás do play */
   --cor-hashtag: #00376b;            /* azul das hashtags na etapa 2 */
   --cor-agendado: #0091ff;           /* borda do card ainda por publicar */
+  --cor-agendado-fundo: #d2ebff;     /* fundo do selo "Agendado" no detalhe */
+  --cor-agendado-texto: #0f71b0;     /* texto do selo "Agendado" no detalhe */
+  --cor-perigo: #b3261e;             /* "Deletar" confirmado, no detalhe do post */
 
   /* Tipografia — Inter em todo o site, servida localmente por
      @fontsource/inter (sem CDN), igual ao squad-identidade-visual.
