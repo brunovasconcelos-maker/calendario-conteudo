@@ -16,6 +16,11 @@ import s from './MidiaDaPrevia.module.css'
  * vez da largura do Figma — é o que o detalhe do post usa para nunca precisar
  * de rolagem. A proporção continua a mesma: o que muda é qual dos dois lados
  * manda. Sem a prop, nada muda para quem já usava.
+ *
+ * As setas moram dentro da moldura, e não no bloco: a moldura é do tamanho
+ * exato do quadro nos dois modos, então elas ficam sempre à mesma distância da
+ * imagem, mesmo quando ela encolhe. Ancoradas no bloco, que guarda a largura
+ * de teto, elas se afastavam da imagem conforme ela diminuía.
  */
 export default function MidiaDaPrevia({
   uploads,
@@ -31,66 +36,70 @@ export default function MidiaDaPrevia({
 
   return (
     <div className={`${s.bloco} ${caber ? s.blocoQueCabe : ''}`}>
-      <div className={`${s.quadro} ${molde} ${caber ? s.encolhe : ''}`}>
-        {carrossel ? (
-          <div className={s.tira}>
-            <div
-              className={s.trilho}
-              style={{ transform: `translateX(-${uploads.indice * 100}%)` }}
-            >
-              {uploads.itens.map((item) => (
-                <img key={item.id} className={s.midia} src={item.url} alt={item.nome} />
-              ))}
+      <div className={`${s.moldura} ${molde} ${caber ? s.molduraQueCabe : ''}`}>
+        <div className={s.quadro}>
+          {carrossel ? (
+            <div className={s.tira}>
+              <div
+                className={s.trilho}
+                style={{ transform: `translateX(-${uploads.indice * 100}%)` }}
+              >
+                {uploads.itens.map((item) => (
+                  <img key={item.id} className={s.midia} src={item.url} alt={item.nome} />
+                ))}
+              </div>
             </div>
-          </div>
-        ) : atual.tipo === 'video' ? (
-          <video className={s.midia} src={atual.url} muted playsInline />
-        ) : (
-          /* Sem url o quadro fica vazio: é o caso da miniatura que não deu
-             para gerar, num post já salvo. Um <img> sem src mostraria o
-             ícone de imagem quebrada. */
-          atual.url && <img className={s.midia} src={atual.url} alt={atual.nome} />
-        )}
+          ) : atual.tipo === 'video' ? (
+            <video className={s.midia} src={atual.url} muted playsInline />
+          ) : (
+            /* Sem url o quadro fica vazio: é o caso da miniatura que não deu
+               para gerar, num post já salvo. Um <img> sem src mostraria o
+               ícone de imagem quebrada. */
+            atual.url && <img className={s.midia} src={atual.url} alt={atual.nome} />
+          )}
 
-        {children}
+          {children}
+        </div>
+
+        {carrossel && (
+          <>
+            {uploads.temAnterior && (
+              <button
+                type="button"
+                className={`${s.seta} ${s.setaEsquerda}`}
+                aria-label="Imagem anterior"
+                onClick={() => uploads.irPara(uploads.indice - 1)}
+              >
+                <Icone nome="CaretLeft" tamanho={24} />
+              </button>
+            )}
+            {uploads.temProximo && (
+              <button
+                type="button"
+                className={`${s.seta} ${s.setaDireita}`}
+                aria-label="Próxima imagem"
+                onClick={() => uploads.irPara(uploads.indice + 1)}
+              >
+                <Icone nome="CaretRight" tamanho={24} />
+              </button>
+            )}
+          </>
+        )}
       </div>
 
       {carrossel && (
-        <>
-          {uploads.temAnterior && (
+        <div className={s.bolinhas}>
+          {uploads.itens.map((item, i) => (
             <button
+              key={item.id}
               type="button"
-              className={`${s.seta} ${s.setaEsquerda}`}
-              aria-label="Imagem anterior"
-              onClick={() => uploads.irPara(uploads.indice - 1)}
-            >
-              <Icone nome="CaretLeft" tamanho={24} />
-            </button>
-          )}
-          {uploads.temProximo && (
-            <button
-              type="button"
-              className={`${s.seta} ${s.setaDireita}`}
-              aria-label="Próxima imagem"
-              onClick={() => uploads.irPara(uploads.indice + 1)}
-            >
-              <Icone nome="CaretRight" tamanho={24} />
-            </button>
-          )}
-
-          <div className={s.bolinhas}>
-            {uploads.itens.map((item, i) => (
-              <button
-                key={item.id}
-                type="button"
-                className={`${s.bolinha} ${i === uploads.indice ? s.bolinhaAtiva : ''}`}
-                aria-label={`Ir para a imagem ${i + 1}`}
-                aria-current={i === uploads.indice}
-                onClick={() => uploads.irPara(i)}
-              />
-            ))}
-          </div>
-        </>
+              className={`${s.bolinha} ${i === uploads.indice ? s.bolinhaAtiva : ''}`}
+              aria-label={`Ir para a imagem ${i + 1}`}
+              aria-current={i === uploads.indice}
+              onClick={() => uploads.irPara(i)}
+            />
+          ))}
+        </div>
       )}
     </div>
   )
