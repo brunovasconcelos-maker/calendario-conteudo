@@ -1,14 +1,25 @@
-/* Âncora das setas e das bolinhas, que ficam fora do quadro. */
+/* A coluna: moldura em cima, bolinhas embaixo. */
 .bloco {
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+/*
+ * A caixa da imagem, e a âncora das setas — que ficam do lado de fora dela.
+ * É aqui que mora o tamanho, para as setas acompanharem o quadro em vez de uma
+ * caixa maior: nos dois modos esta moldura tem a medida exata da imagem.
+ */
+.moldura {
+  position: relative;
+}
+
 .quadro {
   position: relative;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
+  border-radius: inherit;
   background: var(--cor-superficie);
 }
 
@@ -41,7 +52,7 @@
   justify-content: center;
 }
 
-.encolhe {
+.molduraQueCabe {
   width: auto;
   min-height: 0;
   flex: 1;
