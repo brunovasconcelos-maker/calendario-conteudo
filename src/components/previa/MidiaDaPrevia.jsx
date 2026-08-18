@@ -11,11 +11,17 @@ import s from './MidiaDaPrevia.module.css'
  *
  * O que vier em `children` fica por cima da mídia, que é onde entram as barras
  * do stories e o trilho de ícones do reel e do TikTok.
+ *
+ * Com `caber`, a moldura passa a ser desenhada a partir da altura que sobra em
+ * vez da largura do Figma — é o que o detalhe do post usa para nunca precisar
+ * de rolagem. A proporção continua a mesma: o que muda é qual dos dois lados
+ * manda. Sem a prop, nada muda para quem já usava.
  */
 export default function MidiaDaPrevia({
   uploads,
   formato = 'feed',
   carrossel = false,
+  caber = false,
   children,
 }) {
   const atual = uploads.atual
@@ -24,8 +30,8 @@ export default function MidiaDaPrevia({
   const molde = formato === 'vertical' ? s.vertical : s.feed
 
   return (
-    <div className={s.bloco}>
-      <div className={`${s.quadro} ${molde}`}>
+    <div className={`${s.bloco} ${caber ? s.blocoQueCabe : ''}`}>
+      <div className={`${s.quadro} ${molde} ${caber ? s.encolhe : ''}`}>
         {carrossel ? (
           <div className={s.tira}>
             <div

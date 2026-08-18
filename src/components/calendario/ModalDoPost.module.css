@@ -9,16 +9,22 @@
   background: var(--cor-scrim);
 }
 
-/* 580px de largura, como o Figma. A altura é o que couber na tela: o desenho
-   tem 793px de altura e não caberia numa janela baixa. */
+/*
+ * 580px de largura, como o Figma. A altura é o que couber na tela.
+ *
+ * Nada aqui rola: quem cede espaço é a mídia, e as folgas encolhem junto. O
+ * desenho tem 793px de altura, e numa janela baixa os 40px de respiro entre os
+ * blocos sozinhos já custariam mais que a diferença — por isso eles são
+ * proporcionais à altura da tela, presos ao valor do Figma lá em cima.
+ */
 .caixa {
   display: flex;
   max-height: 100%;
   width: 580px;
   max-width: 100%;
   flex-direction: column;
-  gap: var(--espaco-24);
-  padding: var(--espaco-24) var(--espaco-24) 40px;
+  gap: clamp(var(--espaco-12), 2.5vh, var(--espaco-24));
+  padding: var(--espaco-24) var(--espaco-24) clamp(var(--espaco-20), 4vh, 40px);
   border-radius: var(--raio-card);
   background: var(--cor-fundo);
 }
@@ -95,13 +101,21 @@
   background: var(--cor-superficie);
 }
 
-/* O miolo rola quando o post é alto; o cabeçalho fica parado em cima. */
+/*
+ * O miolo é uma coluna onde só a mídia estica: legenda, data e botões pedem a
+ * altura que precisam, e o que sobra é da imagem. É isso que faz os botões
+ * ficarem sempre à vista, em qualquer altura de janela.
+ *
+ * O overflow aqui é rede de segurança, não o plano: só entra em cena com uma
+ * legenda fora do comum numa janela muito baixa, e mesmo assim é melhor rolar
+ * do que cortar.
+ */
 .corpo {
   display: flex;
   min-height: 0;
   flex: 1;
   flex-direction: column;
-  gap: 40px;
+  gap: clamp(var(--espaco-16), 4vh, 40px);
   overflow-y: auto;
 }
 
@@ -109,21 +123,50 @@
    e o botão fora da largura da mídia, para não cobrir a imagem. */
 .palco {
   display: flex;
-  flex: none;
-  align-items: flex-start;
+  min-height: 120px;
+  flex: 1;
+  align-items: stretch;
   justify-content: center;
   gap: var(--espaco-20);
 }
 
 /*
- * 336px é a medida do Figma. A moldura do MidiaDaPrevia é a mesma da etapa 3 e
- * traz 394px no feed, mas encolhe até aqui pelo max-width que ela já tem —
- * assim as setas do carrossel, que ficam a 76px do quadro, continuam dentro
- * dos 532px de miolo do modal.
+ * 336px é a medida do Figma, e vira o teto da largura — não a largura. A
+ * moldura do MidiaDaPrevia entra em modo "cabe" e se desenha a partir da
+ * altura que sobrou aqui, respeitando esse teto quando há altura de sobra.
+ *
+ * Como a proporção é fixa, o teto de largura também é teto de altura: 336px
+ * dão os 420px do Figma. Numa janela alta a mídia para no tamanho desenhado em
+ * vez de crescer para encher; ela só encolhe quando o espaço aperta.
+ *
+ * O teto também é o que segura as setas do carrossel, que ficam a 76px do
+ * quadro, dentro dos 532px de miolo do modal.
+ */
+/*
+ * Encolhe junto com a moldura, em vez de guardar os 336px: o teto é uma medida
+ * absoluta, então não há circularidade em deixar a largura vir do conteúdo. É o
+ * que mantém a seta do carrossel colada na imagem quando ela diminui — a seta
+ * fica a 76px da borda do quadro, e não de uma caixa que ficou parada.
  */
 .midia {
-  width: 336px;
-  max-width: 100%;
+  --largura-maxima-da-midia: 336px;
+
+  display: flex;
+  min-width: 0;
+  justify-content: center;
+}
+
+/* O vertical tem outro teto: 256px são os 455px de altura do reel e do stories,
+   a mesma moldura que a etapa 3 desenha. */
+.midiaVertical {
+  --largura-maxima-da-midia: 256px;
+}
+
+/* O botão de métricas acompanha o topo da imagem, e não estica com ela. */
+.metricasColuna {
+  display: flex;
+  flex: none;
+  align-items: flex-start;
 }
 
 .metricas {
@@ -163,7 +206,7 @@
   display: flex;
   flex: none;
   flex-direction: column;
-  gap: var(--espaco-20);
+  gap: clamp(var(--espaco-12), 2.5vh, var(--espaco-20));
 }
 
 .quando {

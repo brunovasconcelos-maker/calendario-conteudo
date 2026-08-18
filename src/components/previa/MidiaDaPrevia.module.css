@@ -27,6 +27,27 @@
   border-radius: 4px;
 }
 
+/*
+ * Modo "cabe": o bloco ocupa a altura que o pai der, e a moldura vira o item
+ * elástico dessa coluna. Com a largura em auto, é a proporção que calcula o
+ * outro lado — então a moldura encolhe pela altura sem cortar nem deformar, e
+ * as bolinhas do carrossel continuam com o espaço delas embaixo.
+ *
+ * O max-width vem de fora, pela variável: a medida do Figma é do desenho que
+ * usa a peça, não dela.
+ */
+.blocoQueCabe {
+  height: 100%;
+  justify-content: center;
+}
+
+.encolhe {
+  width: auto;
+  min-height: 0;
+  flex: 1;
+  max-width: var(--largura-maxima-da-midia, 100%);
+}
+
 .midia {
   display: block;
   width: 100%;
