@@ -7,12 +7,55 @@
 const CHAVE = 'squad-calendario-posts'
 const EVENTO = 'squad-calendario-posts-mudou'
 
+const FORMATO_DA_DATA = /^\d{4}-\d{2}-\d{2}$/
+const FORMATO_DA_HORA = /^\d{2}:\d{2}$/
+
+/*
+ * O mínimo para um post atravessar o calendário sem quebrar nada: um objeto com
+ * id, e com data e hora nos formatos que o resto do código desmonta com split.
+ *
+ * O que falta aqui é o que estoura em quem lê — postsDoDia compara `post.data`
+ * e ordena por `post.hora`, quandoDoPost fatia as duas. Um item nulo ou sem
+ * esses campos derrubaria a grade inteira.
+ *
+ * Os outros campos não entram na conta: legenda, mídias e plataforma já são
+ * lidos com tolerância a ausência, e barrar um post por causa deles esconderia
+ * do calendário algo que dava para mostrar.
+ */
+function postUsavel(post) {
+  return (
+    typeof post === 'object' &&
+    post !== null &&
+    typeof post.id === 'string' &&
+    typeof post.data === 'string' &&
+    FORMATO_DA_DATA.test(post.data) &&
+    typeof post.hora === 'string' &&
+    FORMATO_DA_HORA.test(post.hora)
+  )
+}
+
+/*
+ * Conteúdo estranho na chave não pode derrubar o calendário — nem quando é a
+ * chave inteira (JSON quebrado, um objeto no lugar da lista), nem quando é um
+ * item solto dentro de uma lista boa.
+ *
+ * O que não serve é descartado na leitura, e some de vez na próxima gravação:
+ * salvar, atualizar e apagar regravam o que esta função devolveu.
+ */
 export function lerPosts() {
   try {
     const cru = localStorage.getItem(CHAVE)
     const lista = cru ? JSON.parse(cru) : []
-    // Conteúdo estranho na chave não pode derrubar o calendário.
-    return Array.isArray(lista) ? lista : []
+    if (!Array.isArray(lista)) return []
+
+    const usaveis = lista.filter(postUsavel)
+    if (usaveis.length !== lista.length) {
+      console.warn(
+        `${lista.length - usaveis.length} post(s) inválido(s) foram ignorados em ${CHAVE}.`,
+      )
+    }
+
+    return usaveis
   } catch {
     return []
   }
